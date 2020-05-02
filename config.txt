@@ -1,0 +1,3 @@
+REMOTE_CONSOLE_IP:192.168.0.14
+REMOTE_CONSOLE_PORT:8991
+Allowed_admin:super-truite#8129,otherperson

@@ -1,0 +1,50 @@
+# Discord Bot to use the remote console in il2 written in python 3.6
+this can be used to interact with Dserver from discord ( activate MCUs using
+the serverinput command for instance)
+
+# Bot Installation
+If you already have a working python installation, you can ignore 
+the anaconda part and install in your environment the needed packages: discord.py and pandas.
+
+All this should be done on the machine where you run DServer.exe
+
+* create a discord bot following those instructions: https://discordpy.readthedocs.io/en/latest/discord.html#discord-intro
+* copy the link provided in the OAuth2 page, copy paste it in your navigator and allow the bot on your discord server
+* On your server, Install Anaconda: https://repo.anaconda.com/archive/Anaconda3-2019.10-Windows-x86_64.exe
+* Launch Anaconda command prompt (windows key and type anaconda)
+* cd to the discordBot folder and create the "il2" python  environment using this command:
+```
+conda env create -f environment.yml
+```
+* activate environment:
+```
+conda activate il2
+```
+* launch the discord bot:
+```
+python discord_bot.py my_bot_token
+```
+(replace my_bot_token with your token without quotes. You can find your token on 
+your application page in settings\bot : https://discordapp.com/developers/applications)
+
+# Configuration:
+* Remote console: please follow the instructions p:173 of JimTM's guide (https://forum.il2sturmovik.com/topic/26303-il-2-sturmovik-mission-editor-and-multiplayer-server-manual/)
+to setup your remote console. 
+Change the IP and port in the config.txt (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
+* You can add server input commands  (the name of a serverinput MCU in the mission editor)
+in the file 'command_for_remote_console.txt'. The format is the following:
+on each lines: "name of the server input MCU", "message the bot will say after execution"
+
+# Usage
+To send a serverinput command, say #RC 'command' in discord.
+The bot should reply. For instance:
+```
+#RC kick name super-truite
+#RC serverinput start
+```
+
+#  Thanks
+Thanks to Coconut, Murleen and Sebj for the help with the remote console
+
+
+ 

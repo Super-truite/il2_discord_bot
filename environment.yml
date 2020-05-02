@@ -1,0 +1,11 @@
+name: il2
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - pandas
+  - pip
+  - pip:
+    - discord.py
+
