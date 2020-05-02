@@ -1,4 +1,4 @@
-# Discord Bot to use the remote console in il2 written in python 3.6
+# Discord Bot to use the remote console in il2 written ( python 3.6 )
 this can be used to interact with Dserver from discord ( activate MCUs using
 the serverinput command for instance)
 

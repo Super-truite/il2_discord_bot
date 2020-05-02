@@ -8,4 +8,5 @@ dependencies:
   - pip
   - pip:
     - discord.py
+    - tabulate
 
