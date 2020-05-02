@@ -1,3 +1,0 @@
-command,response message in discord
-start,train starting
-stop,train stoping

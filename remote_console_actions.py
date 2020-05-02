@@ -6,9 +6,11 @@ from tabulate import tabulate
 server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
 REMOTE_CONSOLE_IP = server_params_dict['REMOTE_CONSOLE_IP']
 REMOTE_CONSOLE_PORT = int(server_params_dict['REMOTE_CONSOLE_PORT'])
-command_dict = pd.read_csv('command_for_remote_console.txt', header=None, index_col=0, squeeze=True, skiprows=1).to_dict()
+LOGIN_REMOTE_CONSOLE = server_params_dict['LOGIN_REMOTE_CONSOLE']
+PASSWORD_REMOTE_CONSOLE = server_params_dict['PASSWORD_REMOTE_CONSOLE']
 
-# initializing the remote console
+
+
 #remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
 
 ERROR_MESSAGES = {
@@ -35,7 +37,6 @@ def to_df(s):
             d[k].append(row[i])
 
     return pd.DataFrame(d)
-
 
 def to_ascii_table(s):
     df = to_df(s)
@@ -67,6 +68,7 @@ def call_command(msg):
     msg = msg[4:]
     print('command sent: ', msg)
     try:
+        # initializing the remote console
         remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
         response = remoteconsole.send(msg)
         print('server response: ', response)
@@ -84,22 +86,3 @@ def call_command(msg):
         return str(e)
 
 
-def call_command_serverinput(msg):
-    msg = msg.split(' ')[1]
-    if msg in command_dict.keys():
-        remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
-        auth = remoteconsole.send('auth admin password')
-        print(auth)
-        print('sending command: ', 'serverinput {}'.format(msg))
-        server_input = remoteconsole.send('serverinput {}'.format(msg))
-        print(server_input)
-        print(command_dict[msg])
-        return command_dict[msg]
-    else:
-        return 'invalid command'
-
-if __name__ == '__main__':
-    useful_commands = ['getplayerlist', 'serverinput lalala', 'serverstatus', 'kick name super-truite',
-                       'unbanall']
-    for c in useful_commands:
-        call_command('$RC '+ c)

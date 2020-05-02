@@ -31,20 +31,20 @@ your application page in settings\bot : https://discordapp.com/developers/applic
 * Remote console: please follow the instructions p:173 of JimTM's guide (https://forum.il2sturmovik.com/topic/26303-il-2-sturmovik-mission-editor-and-multiplayer-server-manual/)
 to setup your remote console. 
 Change the IP and port in the config.txt (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
-* You can add server input commands  (the name of a serverinput MCU in the mission editor)
-in the file 'command_for_remote_console.txt'. The format is the following:
-on each lines: "name of the server input MCU", "message the bot will say after execution"
+* You can allow users to talk to the console by adding them in the Allowed_admin line in config.txt
+* You need to specify the login/password to the remote console in config.txt
 
 # Usage
 To send a serverinput command, say #RC 'command' in discord.
 The bot should reply. For instance:
 ```
 #RC kick name super-truite
+#RC getplayerlist
 #RC serverinput start
 ```
 
-#  Thanks
-Thanks to Coconut, Murleen and Sebj for the help with the remote console
+# Thanks
+Thanks to Coconut, Murleen and Sebj for helping me "talking" with the remote console :-)
 
 
  
