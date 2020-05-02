@@ -37,16 +37,3 @@ class RemoteConsoleClient():
 
         except socket.error as e:
             print(e)
-
-if __name__ == '__main__':
-    REMOTE_CONSOLE_IP = '192.168.0.14'
-    REMOTE_CONSOLE_PORT = 8991
-    remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
-
-    useful_commands = ['getplayerlist', 'serverinput lalala', 'serverstatus', 'kick cid/name/playerid/profileid value', 'unbanall']
-    server_input = remoteconsole.send('serverinput start')
-    print('Response: ', server_input)
-    server_input = remoteconsole.send('serverinput stop')
-    print('Response: ', server_input)
-    server_input = remoteconsole.send('serverinput start')
-    print('Response: ', server_input)

@@ -10,9 +10,6 @@ LOGIN_REMOTE_CONSOLE = server_params_dict['LOGIN_REMOTE_CONSOLE']
 PASSWORD_REMOTE_CONSOLE = server_params_dict['PASSWORD_REMOTE_CONSOLE']
 
 
-
-#remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
-
 ERROR_MESSAGES = {
     1: 'OK',
     2: 'unknown',
