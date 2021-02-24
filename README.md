@@ -42,9 +42,9 @@ Change the IP and port in the config.txt (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT
 To send a serverinput command, say #RC 'command' in discord.
 The bot should reply. For instance:
 ```
-#RC kick name super-truite
-#RC getplayerlist
-#RC serverinput start
+$RC kick name super-truite
+$RC getplayerlist
+$RC serverinput start
 ```
 
 # Thanks
