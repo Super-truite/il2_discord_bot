@@ -3,11 +3,11 @@ import sys
 import pandas as pd
 from remote_console_actions import call_command
 
-DISCORD_BOT_TOKEN = sys.argv[1]
 
 client = discord.Client()
 
 server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
+DISCORD_BOT_TOKEN = server_params_dict['DISCORD_BOT_TOKEN']
 
 @client.event
 async def on_ready():
