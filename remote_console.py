@@ -1,5 +1,10 @@
 import socket
 import struct
+import pandas as pd
+
+server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
+login = server_params_dict['LOGIN_REMOTE_CONSOLE']
+password = server_params_dict['PASSWORD_REMOTE_CONSOLE']
 
 def pack_message(msg):
     msg = msg.encode('ASCII')
@@ -19,7 +24,9 @@ class RemoteConsoleClient():
         self.host = host
         self.port = port
         self.connect()
-        self.send('auth admin password')
+        auth = 'auth {0} {1}'.format(login, password)
+        print(auth)
+        self.send(auth)
 
     def connect(self):
         try:
