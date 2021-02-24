@@ -24,7 +24,7 @@ async def on_message(message):
             msg = call_command(message.content)
             await message.channel.send(str(msg))
         else:
-            await message.channel.send('bien essayé, mais non')
+            await message.channel.send('Cannot execute command. You are not an allowed admin')
 
 client.run(DISCORD_BOT_TOKEN)
 
