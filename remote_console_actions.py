@@ -2,6 +2,7 @@ import pandas as pd
 from remote_console import RemoteConsoleClient
 import urllib.parse
 from tabulate import tabulate
+import time
 
 server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
 REMOTE_CONSOLE_IP = server_params_dict['REMOTE_CONSOLE_IP']
@@ -83,9 +84,12 @@ def call_command(msg):
         return 'not passed'
 
 def safe_call_command(msg):
-    error = True
-    while error:
+    i = 0
+    while i < 10:
         res = call_command(msg, verbose=False)
         if res != 'not passed':
+            error = False
             return res
         time.sleep(1)
+        i += 1
+    raise Exception('Command did not execute after 10 trials')
