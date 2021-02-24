@@ -80,6 +80,12 @@ def call_command(msg):
 
     except Exception as e:
         print(e)
-        return str(e)
+        return 'not passed'
 
-
+def safe_call_command(msg, verbose=False):
+    error = True
+    while error:
+        res = call_command(msg, verbose=False)
+        if res != 'not passed':
+            return res
+        time.sleep(1)
