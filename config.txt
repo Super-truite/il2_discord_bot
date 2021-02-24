@@ -3,3 +3,5 @@ REMOTE_CONSOLE_PORT:8991
 Allowed_admin:super-truite#8129,otherperson
 LOGIN_REMOTE_CONSOLE:admin
 PASSWORD_REMOTE_CONSOLE:password
+DISCORD_BOT_TOKEN:your_token
+
