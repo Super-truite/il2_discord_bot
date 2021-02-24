@@ -1,4 +1,4 @@
-# Discord Bot to use the remote console in il2 ( python 3.6 )
+# Discord Bot to use the remote console in il2 ( python 3.7 )
 this can be used to interact with Dserver from discord ( activate MCUs using
 the serverinput command for instance)
 
@@ -23,13 +23,6 @@ conda env create -f environment.yml
 ```
 conda activate il2
 ```
-* launch the discord bot:
-```
-python discord_bot.py my_bot_token
-```
-(replace my_bot_token with your token without quotes. You can find your token on 
-your application page in settings\bot : https://discordapp.com/developers/applications.
-Do not share the token)
 
 # Configuration:
 * Remote console: please follow the instructions p:173 of JimTM's guide (https://forum.il2sturmovik.com/topic/26303-il-2-sturmovik-mission-editor-and-multiplayer-server-manual/)
@@ -37,6 +30,14 @@ to setup your remote console.
 Change the IP and port in the config.txt (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
 * You can allow users to talk to the console by adding them in the Allowed_admin line in config.txt
 * You need to specify the login/password to the remote console in config.txt
+* You need to add your discord bot token in config.txt . You can find your token on 
+your application page in settings\bot : https://discordapp.com/developers/applications.
+Do not share the token!
+
+# launch the discord bot:
+```
+python discord_bot.py 
+```
 
 # Usage
 To send a serverinput command, say #RC 'command' in discord.
