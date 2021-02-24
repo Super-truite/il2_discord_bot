@@ -82,7 +82,7 @@ def call_command(msg):
         print(e)
         return 'not passed'
 
-def safe_call_command(msg, verbose=False):
+def safe_call_command(msg):
     error = True
     while error:
         res = call_command(msg, verbose=False)
