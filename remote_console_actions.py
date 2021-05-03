@@ -71,6 +71,7 @@ def call_command(msg):
         response = remoteconsole.send(msg)
         print('server response: ', response)
         response = parse_response(response)
+        remoteconsole.close()
         if len(response) == 1:
             if response[0][1] == '1':
                 return 'success'
