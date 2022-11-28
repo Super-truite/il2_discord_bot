@@ -33,7 +33,7 @@ The bot should reply. For instance:
 $RC kick name super-truite
 $RC getplayerlist
 $RC serverinput start
-
+```
 ## For those wanting to modify the bot or if the executable do not work on your system:
 ## Python bot Installation
 If you already have a working python installation, you can ignore 
