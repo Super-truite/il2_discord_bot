@@ -8,7 +8,6 @@ https://discordpy.readthedocs.io/en/latest/discord.html#discord-intro
 * copy the link provided in the OAuth2 page, copy paste it in your navigator and allow the bot on your discord server
 
 # Python bot Installation
-
 If you already have a working python installation, you can ignore 
 the anaconda part and install in your environment the needed packages: discord.py, tabulate and pandas.
 All this should be done on the machine where you run DServer.exe
@@ -27,10 +26,10 @@ conda activate il2
 # Configuration:
 * Remote console: please follow the instructions p:173 of JimTM's guide (https://forum.il2sturmovik.com/topic/26303-il-2-sturmovik-mission-editor-and-multiplayer-server-manual/)
 to setup your remote console. 
-Change the IP and port in the config.txt (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
-* You can allow users to talk to the console by adding them in the Allowed_admin line in config.txt
-* You need to specify the login/password to the remote console in config.txt
-* You need to add your discord bot token in config.txt . You can find your token on 
+Change the IP and port in the config.ini (REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
+* You can allow users to talk to the console by adding them in the Allowed_admin line in config.ini. The format is a list of discord user names (fullname with # on their profile on discord) separated by ','
+* You need to specify the login/password to the remote console in config.ini
+* You need to add your discord bot token in config.ini . You can find your token on 
 your application page in settings\bot : https://discordapp.com/developers/applications.
 Do not share the token!
 

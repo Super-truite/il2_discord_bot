@@ -2,9 +2,11 @@ import socket
 import struct
 import pandas as pd
 
-server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
-login = server_params_dict['LOGIN_REMOTE_CONSOLE']
-password = server_params_dict['PASSWORD_REMOTE_CONSOLE']
+import configparser
+config = configparser.ConfigParser()
+config.read('config.ini')
+login =  config['DEFAULT']['LOGIN_REMOTE_CONSOLE']
+password =  config['DEFAULT']['PASSWORD_REMOTE_CONSOLE']
 
 def pack_message(msg):
     msg = msg.encode('ASCII')

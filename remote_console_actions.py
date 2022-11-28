@@ -3,12 +3,14 @@ from remote_console import RemoteConsoleClient
 import urllib.parse
 from tabulate import tabulate
 import time
+import configparser
 
-server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
-REMOTE_CONSOLE_IP = server_params_dict['REMOTE_CONSOLE_IP']
-REMOTE_CONSOLE_PORT = int(server_params_dict['REMOTE_CONSOLE_PORT'])
-LOGIN_REMOTE_CONSOLE = server_params_dict['LOGIN_REMOTE_CONSOLE']
-PASSWORD_REMOTE_CONSOLE = server_params_dict['PASSWORD_REMOTE_CONSOLE']
+config = configparser.ConfigParser()
+config.read('config.ini')
+REMOTE_CONSOLE_IP = config['DEFAULT']['REMOTE_CONSOLE_IP']
+REMOTE_CONSOLE_PORT = int(config['DEFAULT']['REMOTE_CONSOLE_PORT'])
+LOGIN_REMOTE_CONSOLE = config['DEFAULT']['LOGIN_REMOTE_CONSOLE']
+PASSWORD_REMOTE_CONSOLE = config['DEFAULT']['PASSWORD_REMOTE_CONSOLE']
 
 
 ERROR_MESSAGES = {
@@ -22,7 +24,6 @@ ERROR_MESSAGES = {
     8: 'server user',
     9: 'unknown user'
 }
-
 
 def to_df(s):
     s = urllib.parse.unquote(s)
@@ -56,20 +57,21 @@ def parse_response(s):
         list_message.append(element)
     return list_message
 
-
-def call_command(msg):
+def call_command(msg, verbose=False):
     '''
     call a remote client command
     :param msg: for instance "serverinput start" (string)
     :return: message to return to discord or error message (string)
     '''
     msg = msg[4:]
-    print('command sent: ', msg)
     try:
+        if verbose:
+            print('command sent: ', msg)
         # initializing the remote console
         remoteconsole = RemoteConsoleClient(REMOTE_CONSOLE_IP, REMOTE_CONSOLE_PORT)
         response = remoteconsole.send(msg)
-        print('server response: ', response)
+        if verbose:
+            print('server response: ', response)
         response = parse_response(response)
         remoteconsole.close()
         if len(response) == 1:
@@ -81,16 +83,14 @@ def call_command(msg):
             return response
 
     except Exception as e:
-        print(e)
+        print('Call command: ', e)
         return 'not passed'
 
-def safe_call_command(msg):
-    i = 0
-    while i < 10:
-        res = call_command(msg, verbose=False)
+def safe_call_command(msg, verbose=True):
+    error = True
+    while error:
+        res = call_command(msg, verbose=verbose)
         if res != 'not passed':
-            error = False
             return res
         time.sleep(1)
-        i += 1
-    raise Exception('Command did not execute after 10 trials')
+

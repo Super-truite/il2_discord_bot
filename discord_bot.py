@@ -1,13 +1,18 @@
 import discord
 import sys
-import pandas as pd
-from remote_console_actions import call_command
+import os
+from remote_console_actions import call_command, safe_call_command
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+client = discord.Client()
+DISCORD_BOT_TOKEN = config['DEFAULT']['DISCORD_BOT_TOKEN']
+ALLOWED_ADMINS = config['DEFAULT']['Allowed_admin']
 
 
 client = discord.Client()
 
-server_params_dict = pd.read_csv('config.txt', sep=':', header=None, index_col=0, squeeze=True).to_dict()
-DISCORD_BOT_TOKEN = server_params_dict['DISCORD_BOT_TOKEN']
 
 @client.event
 async def on_ready():
@@ -25,6 +30,15 @@ async def on_message(message):
             await message.channel.send(str(msg))
         else:
             await message.channel.send('Cannot execute command. You are not an allowed admin')
+
+@client.event
+async def on_message(message):
+    if message.content.startswith('$RC'):
+        if str(message.author) in ALLOWED_ADMINS.split(','):
+            msg = safe_call_command(message.content)
+            await message.channel.send(str(msg))
+        else:
+            await message.channel.send('You do not have the right to use the bot. Ask an admin')
 
 client.run(DISCORD_BOT_TOKEN)
 
